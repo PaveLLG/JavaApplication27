@@ -19,7 +19,20 @@ public class JavaApplication27 {
         fxList.addListener(new ListChangeListener<Person>() {
             @Override
             public void onChanged(Change<? extends Person> c) {
+                while (c.next()){
+                    if(c.wasAdded()){
+                        for(Person person: c.getAddedSubList()){
+                            oldList.add(person);
+                        }
 
+                    }else if(c.wasRemoved()){
+                        for(Person person: c.getRemoved()){
+                            oldList.remove(person);
+                        }
+
+
+                    }
+                }
             }
         });
 
@@ -27,9 +40,10 @@ public class JavaApplication27 {
 
         fxList.add(new Person("Name3", 33));
         fxList.remove(0);
+        fxList.get(1 ).age++;
 
         for(Person person:oldList){
-
+                System.out.println(person);
         }
 
 
